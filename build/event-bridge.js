@@ -36,7 +36,11 @@ EventBridge = (function() {
   };
 
   EventBridge.prototype.target = function(event) {
-    return event.target || event.srcElement;
+    if (event != null) {
+      return event.target || event.srcElement;
+    } else {
+      return null;
+    }
   };
 
   return EventBridge;

@@ -20,4 +20,7 @@ class EventBridge
         event.returnValue = false
 
   target: (event) ->
-    event.target or event.srcElement
+    if event?
+      event.target or event.srcElement
+    else
+      null

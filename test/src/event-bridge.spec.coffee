@@ -36,3 +36,6 @@ describe 'Event Bridge', ->
       expect(evt.target e).toEqual elm
       done()
     simulateMouseEvent elm, 'click'
+
+  it 'should not throw when getting target of non-eisting event', ->
+    expect(-> evt.target null).not.toThrow()
