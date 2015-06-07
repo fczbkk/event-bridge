@@ -19,8 +19,8 @@ event_bridge.add(element, 'click', function (e) {/*...*/});
 // NOTE: you have to use reference to the same function object that you used
 // when you were adding the event listener... so no anonymous functions
 function handleEvent(e) {/*...*/}
-eventBridge.add(element, 'click', handleEvent);  // now the listener is active
-eventBridge.remove(element, 'click', handleEvent);  // now it is not
+event_bridge.add(element, 'click', handleEvent);  // now the listener is active
+event_bridge.remove(element, 'click', handleEvent);  // now it is not
 
 // handy methods for cross-browser handling of event objects
 event_bridge.add(element, 'click', function (e) {
