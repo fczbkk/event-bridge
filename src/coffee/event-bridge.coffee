@@ -24,3 +24,10 @@ class EventBridge
       event.target or event.srcElement
     else
       null
+
+
+# export to global namespace
+if expose?
+  expose EventBridge, 'EventBridge'
+else
+  window.EventBridge = EventBridge
