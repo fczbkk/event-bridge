@@ -9,27 +9,24 @@ You should use [`Event` polyfill](https://cdn.polyfill.io/v1/polyfill.js?feature
 ## Example
 
 ```javascript
-// create instance of ClassBridge object
-var event_bridge = new EventBridge;
-
 // add event listener
-event_bridge.add(element, 'click', function (e) {/*...*/});
+EventBridge.add(element, 'click', function (e) {/*...*/});
 
 // remove event listener
 // NOTE: you have to use reference to the same function object that you used
 // when you were adding the event listener... so no anonymous functions
 function handleEvent(e) {/*...*/}
-event_bridge.add(element, 'click', handleEvent);  // now the listener is active
-event_bridge.remove(element, 'click', handleEvent);  // now it is not
+EventBridge.add(element, 'click', handleEvent);  // now the listener is active
+EventBridge.remove(element, 'click', handleEvent);  // now it is not
 
 // handy methods for cross-browser handling of event objects
-event_bridge.add(element, 'click', function (e) {
+EventBridge.add(element, 'click', function (e) {
 
   // get the event target (IE provides event.srcElement instead event.target)
-  event_bridge.target(e);
+  EventBridge.target(e);
 
   // stop the event
-  event_bridge.stop(e);
+  EventBridge.stop(e);
 
 });
 

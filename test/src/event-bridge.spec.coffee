@@ -5,7 +5,7 @@ describe 'Event Bridge', ->
   handle_event = null
 
   beforeEach ->
-    evt = new EventBridge
+    evt = EventBridge
     elm = document.createElement 'div'
     handle_event = jasmine.createSpy 'handle_event'
 
