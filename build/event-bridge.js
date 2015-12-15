@@ -1,10 +1,24 @@
 (function() {
   var EventBridge, root;
 
+  if (Array.isArray == null) {
+    Array.isArray = function(argument) {
+      return Object.prototype.toString.call(argument) === '[object Array]';
+    };
+  }
+
   EventBridge = {
     add: function(object, event, callback) {
+      var i, len, single_event;
       if (callback == null) {
         callback = function() {};
+      }
+      if (Array.isArray(event)) {
+        for (i = 0, len = event.length; i < len; i++) {
+          single_event = event[i];
+          EventBridge.add(object, single_event, callback);
+        }
+        return;
       }
       if (object.addEventListener) {
         object.addEventListener(event, callback);
@@ -13,8 +27,16 @@
       }
     },
     remove: function(object, event, callback) {
+      var i, len, single_event;
       if (callback == null) {
         callback = function() {};
+      }
+      if (Array.isArray(event)) {
+        for (i = 0, len = event.length; i < len; i++) {
+          single_event = event[i];
+          EventBridge.remove(object, single_event, callback);
+        }
+        return;
       }
       if (object.removeEventListener) {
         object.removeEventListener(event, callback);
