@@ -1,6 +1,16 @@
+# `Array.isArray` polyfill
+Array.isArray ?= (argument) ->
+  Object::toString.call(argument) is '[object Array]'
+
+
 EventBridge =
 
   add: (object, event, callback = ->) ->
+    if Array.isArray event
+      for single_event in event
+        EventBridge.add object, single_event, callback
+      return
+
     if object.addEventListener
       object.addEventListener event, callback
     else if object.attachEvent
@@ -8,6 +18,11 @@ EventBridge =
     return
 
   remove: (object, event, callback = ->) ->
+    if Array.isArray event
+      for single_event in event
+        EventBridge.remove object, single_event, callback
+      return
+
     if object.removeEventListener
       object.removeEventListener event, callback
     else if object.detachEvent

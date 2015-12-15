@@ -39,3 +39,14 @@ describe 'Event Bridge', ->
 
   it 'should not throw when getting target of non-eisting event', ->
     expect(-> evt.target null).not.toThrow()
+
+  it 'should work with multiple events types', ->
+    spyOn(evt, 'add').and.callThrough()
+    evt.add elm, ['mouseover', 'mouseout'], handle_event
+    expect(evt.add).toHaveBeenCalledWith elm, 'mouseover', handle_event
+    expect(evt.add).toHaveBeenCalledWith elm, 'mouseout', handle_event
+
+    spyOn(evt, 'remove').and.callThrough()
+    evt.remove elm, ['mouseover', 'mouseout'], handle_event
+    expect(evt.remove).toHaveBeenCalledWith elm, 'mouseover', handle_event
+    expect(evt.remove).toHaveBeenCalledWith elm, 'mouseout', handle_event

@@ -19,6 +19,9 @@ function handleEvent(e) {/*...*/}
 EventBridge.add(element, 'click', handleEvent);  // now the listener is active
 EventBridge.remove(element, 'click', handleEvent);  // now it is not
 
+// add multiple event listeners at once
+EventBridge.add(element, ['mouseover', 'mouseout'], handleEvent);
+
 // handy methods for cross-browser handling of event objects
 EventBridge.add(element, 'click', function (e) {
 
