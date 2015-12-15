@@ -8,7 +8,7 @@
     "url": "git@github.com:fczbkk/event-bridge.git"
   },
   "author": "Riki Fridrich <riki@fczbkk.com> (https://github.com/fczbkk)",
-  "license": "UNLICENSE",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/fczbkk/event-bridge/issues"
   },
