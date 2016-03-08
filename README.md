@@ -41,4 +41,4 @@ If you found any bugs, if you have feature requests or any questions, please, ei
 
 ## License
 
-Angle JS is published under the [MIT license](https://github.com/fczbkk/event-bridge/blob/master/LICENSE). Feel free to use it in any way.
+This project is published under the [MIT license](https://github.com/fczbkk/event-bridge/blob/master/LICENSE). Feel free to use it in any way.
