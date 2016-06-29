@@ -1,3 +1,13 @@
+<a name="3.3.0"></a>
+# [3.3.0](https://github.com/fczbkk/event-bridge/compare/v3.2.0...v3.3.0) (2016-06-29)
+
+
+### Features
+
+* add `addFirstSupported()` ([e32cccc](https://github.com/fczbkk/event-bridge/commit/e32cccc))
+
+
+
 <a name="3.2.0"></a>
 # [3.2.0](https://github.com/fczbkk/event-bridge/compare/v3.1.0...v3.2.0) (2016-06-29)
 
