@@ -13,13 +13,12 @@ const noop = function () {};
 function handleEvent (object, event, callback, do_add) {
   const main_method = (do_add) ? 'addEventListener' : 'removeEventListener';
   const backup_method = (do_add) ? 'attachEvent' : 'detachEvent';
-  const on_event = `on${event}`;
 
-  if (isValidEventType(on_event)) {
+  if (isValidEventType(event)) {
     if (object[main_method]) {
       object[main_method](event, callback);
     } else if (object[backup_method]) {
-      object[backup_method](on_event, callback);
+      object[backup_method](`on${event}`, callback);
     }
   }
 }
@@ -79,5 +78,5 @@ export function target (event) {
  * @returns {boolean}
  */
 function isValidEventType (event) {
-  return typeof event === 'string' && event in window;
+  return typeof event === 'string' && `on${event}` in window;
 }
