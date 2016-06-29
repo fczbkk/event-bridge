@@ -10,39 +10,38 @@ function isArray (obj) {
 const noop = function () {};
 
 
-export function add (object, event, callback = noop) {
-  if (isArray(event)) {
-    for (let i = 0; i < event.length; i++) {
-      add(object, event[i], callback);
-    }
-  } else {
-    const on_event = `on${event}`;
-    if (isValidEventType(on_event)) {
-      if (object.addEventListener) {
-        object.addEventListener(event, callback);
-      } else if (object.attachEvent) {
-        object.attachEvent(on_event, callback);
-      }
+function handleEvent (object, event, callback, do_add) {
+  const main_method = (do_add) ? 'addEventListener' : 'removeEventListener';
+  const backup_method = (do_add) ? 'attachEvent' : 'detachEvent';
+  const on_event = `on${event}`;
+
+  if (isValidEventType(on_event)) {
+    if (object[main_method]) {
+      object[main_method](event, callback);
+    } else if (object[backup_method]) {
+      object[backup_method](on_event, callback);
     }
   }
 }
 
+function handleEvents (object, events, callback, do_add) {
+  if (typeof events === 'string') {events = [events];}
 
-export function remove (object, event, callback = noop) {
-  if (isArray(event)) {
-    for (let i = 0; i < event.length; i++) {
-      remove(object, event[i], callback);
-    }
-  } else {
-    const on_event = `on${event}`;
-    if (isValidEventType(on_event)) {
-      if (object.removeEventListener) {
-        object.removeEventListener(event, callback);
-      } else if (object.detachEvent) {
-        object.detachEvent(on_event, callback);
-      }
-    }
+  if (isArray(events)) {
+    events.forEach(function (event) {
+      handleEvent(object, event, callback, do_add);
+    });
   }
+}
+
+
+export function add (object = window, events = [], callback = noop) {
+  handleEvents(object, events, callback, true);
+}
+
+
+export function remove (object = window, events = [], callback = noop) {
+  handleEvents(object, events, callback, false);
 }
 
 
