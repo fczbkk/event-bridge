@@ -34,7 +34,7 @@
     "build": "babel src -d lib",
     "dev": "npm run test -- --no-single-run --auto-watch",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "postversion": "git push && git push --tags",
+    "postversion": "git push && git push --tags && npm publish",
     "prebuild": "npm run test",
     "test": "karma start ./karma.conf.js",
     "version": "npm run build && npm run changelog && git add -A"
