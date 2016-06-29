@@ -16,11 +16,13 @@ export function add (object, event, callback = noop) {
       add(object, event[i], callback);
     }
   } else {
-    event = sanitizeEventType(event);
-    if (object.addEventListener) {
-      object.addEventListener(event, callback);
-    } else if (object.attachEvent) {
-      object.attachEvent(`on${event}`, callback);
+    const on_event = `on${event}`;
+    if (isValidEventType(on_event)) {
+      if (object.addEventListener) {
+        object.addEventListener(event, callback);
+      } else if (object.attachEvent) {
+        object.attachEvent(on_event, callback);
+      }
     }
   }
 }
@@ -32,11 +34,13 @@ export function remove (object, event, callback = noop) {
       remove(object, event[i], callback);
     }
   } else {
-    event = sanitizeEventType(event);
-    if (object.removeEventListener) {
-      object.removeEventListener(event, callback);
-    } else if (object.detachEvent) {
-      object.detachEvent(`on${event}`, callback);
+    const on_event = `on${event}`;
+    if (isValidEventType(on_event)) {
+      if (object.removeEventListener) {
+        object.removeEventListener(event, callback);
+      } else if (object.detachEvent) {
+        object.detachEvent(on_event, callback);
+      }
     }
   }
 }
@@ -61,14 +65,10 @@ export function target (event) {
 
 
 /**
- * Checks event type, converts it for one compatible with browser if needed.
- * @param {string} event Event type, without the 'on' prefix
- * @returns {string} Valid event type
+ * Returns `true` if event type is supported by the browser.
+ * @param {string} event Event type
+ * @returns {boolean}
  */
-function sanitizeEventType (event) {
-  // IE9- does not support `onpopstate`, use `onhashchange` instead
-  if ((event === 'popstate') && !('onpopstate' in window)) {
-    event = 'hashchange'
-  }
-  return event;
+function isValidEventType (event) {
+  return typeof event === 'string' && event in window;
 }
