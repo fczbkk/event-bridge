@@ -40,6 +40,16 @@ export function add (object = window, events = [], callback = noop) {
 }
 
 
+export function addFirstSupported (
+  object = window,
+  events = [],
+  callback = noop
+) {
+  const supported_events = events.filter(isValidEventType);
+  add(object, supported_events[0], callback);
+}
+
+
 export function remove (object = window, events = [], callback = noop) {
   handleEvents(object, events, callback, false);
 }

@@ -33,6 +33,9 @@ EventBridge.add(element, 'click', function (e) {
 
 });
 
+// add first event supported by browser - this will add 'onPopState' event in
+// modern browsers, but 'onHashChange' in IE9
+EventBridge.addFirstSupported(window, ['popstate', 'hashchange'], function () {...});
 ```
 
 ## Bug reports, feature requests and contact
