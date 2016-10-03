@@ -1,5 +1,8 @@
-/bower_components/
-/node_modules/
 /.idea/
-*.DS_Store
-*.log
+/node_modules/
+/lib/
+/module/
+npm-debug.log
+npm-debug.log.*
+/temp/
+.DS_store
