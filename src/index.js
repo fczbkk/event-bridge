@@ -20,6 +20,21 @@ export function add (object = window, events = [], callback = noop) {
 
 
 /**
+ * Add event listeners to the object. After any of the events has been fired, the event listeners are removed.
+ * @param {Object} [object=window] - Any object that can receive event listener.
+ * @param {string|Array.<string>} [events] - Single event name or list of event names.
+ * @param {EventCallback} [callback] - Function to be called when event is fired.
+ */
+export function once (object = window, events = [], callback = noop) {
+  const wrappedCallback = function (event) {
+    callback(event);
+    remove(object, events, wrappedCallback);
+  };
+  add(object, events, wrappedCallback);
+}
+
+
+/**
  * Add first supported event listener from the list, ignore the rest.
  * @param {Object} [object=window] - Any object that can receive event listener.
  * @param {Array.<string>} [events] - List of event names.
