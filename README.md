@@ -75,6 +75,16 @@ Add event listeners to the object.
 -   `events` **\[([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>)]** Single event name or list of event names.
 -   `callback` **\[[EventCallback](#eventcallback)]** Function to be called when event is fired.
 
+### once
+
+Add event listeners to the object. After any of the events has been fired, the event listeners are removed.
+
+**Parameters**
+
+-   `object` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** Any object that can receive event listener. (optional, default `window`)
+-   `events` **\[([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>)]** Single event name or list of event names.
+-   `callback` **\[[EventCallback](#eventcallback)]** Function to be called when event is fired.
+
 ### addFirstSupported
 
 Add first supported event listener from the list, ignore the rest.

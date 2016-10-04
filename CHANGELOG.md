@@ -1,3 +1,13 @@
+<a name="3.4.0"></a>
+# [3.4.0](https://github.com/fczbkk/event-bridge/compare/v3.3.1...v3.4.0) (2016-10-04)
+
+
+### Features
+
+* add `once()` method ([43f2f2b](https://github.com/fczbkk/event-bridge/commit/43f2f2b))
+
+
+
 <a name="3.3.1"></a>
 ## [3.3.1](https://github.com/fczbkk/event-bridge/compare/v3.3.0...v3.3.1) (2016-06-29)
 

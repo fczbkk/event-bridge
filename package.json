@@ -1,6 +1,6 @@
 {
   "name": "event-bridge",
-  "version": "3.3.1",
+  "version": "3.4.0",
   "description": "Bridge object for cross-browser working with events.",
   "repository": {
     "type": "git",
