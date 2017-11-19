@@ -4,24 +4,29 @@
  * @param {Event} event
  */
 
+/**
+ * Object for event listener. If function is used, it will be evaluated and its return value will be used.
+ * @typedef {Object|Function} event_object
+ */
+
 
 const noop = function () {};
 
 
 /**
  * Add event listeners to the object.
- * @param {Object} [object=window] - Any object that can receive event listener.
+ * @param {event_object} [object=window] - Any object that can receive event listener.
  * @param {string|Array.<string>} [events] - Single event name or list of event names.
  * @param {EventCallback} [callback] - Function to be called when event is fired.
  */
 export function add (object = window, events = [], callback = noop) {
-  handleEvents(object, events, callback, true);
+  handleEvents(sanitizeInputObject(object), events, callback, true);
 }
 
 
 /**
  * Add event listeners to the object. After any of the events has been fired, the event listeners are removed.
- * @param {Object} [object=window] - Any object that can receive event listener.
+ * @param {event_object} [object=window] - Any object that can receive event listener.
  * @param {string|Array.<string>} [events] - Single event name or list of event names.
  * @param {EventCallback} [callback] - Function to be called when event is fired.
  */
@@ -36,7 +41,7 @@ export function once (object = window, events = [], callback = noop) {
 
 /**
  * Add first supported event listener from the list, ignore the rest.
- * @param {Object} [object=window] - Any object that can receive event listener.
+ * @param {event_object} [object=window] - Any object that can receive event listener.
  * @param {Array.<string>} [events] - List of event names.
  * @param {EventCallback} [callback] - Function to be called when event is fired.
  *
@@ -55,12 +60,12 @@ export function addFirstSupported (
 
 /**
  * Remove event listeners from the object.
- * @param {Object} [object=window] - Any object that can receive event listener.
+ * @param {event_object} [object=window] - Any object that can receive event listener.
  * @param {string|Array.<string>} [events] - Single event name or list of event names.
  * @param {EventCallback} [callback] - Function to be called when event is fired.
  */
 export function remove (object = window, events = [], callback = noop) {
-  handleEvents(object, events, callback, false);
+  handleEvents(sanitizeInputObject(object), events, callback, false);
 }
 
 
@@ -155,4 +160,17 @@ function isArray (input) {
   } else {
     return Object.prototype.toString.call(input) === '[object Array]';
   }
+}
+
+/**
+ * Sanitizes input object, evaluates it if it is function.
+ * @param {*} [input]
+ * @returns {*}
+ */
+function sanitizeInputObject (input) {
+  if (typeof input === 'function') {
+    return input();
+  }
+
+  return input;
 }
