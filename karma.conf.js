@@ -17,7 +17,9 @@ module.exports = function (config) {
       type: 'html',
       dir: 'temp/coverage'
     },
-    browsers: ['PhantomJS'],
+    browsers: [
+      'ChromeHeadless'
+    ],
     singleRun: true
   });
 };
