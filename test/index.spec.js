@@ -1,6 +1,6 @@
 import {simulateMouseEvent} from '@fczbkk/event-simulator';
 
-import * as evt from './../src/';
+import * as evt from './../src/index.js';
 
 
 describe('Event Bridge', function () {
@@ -78,6 +78,19 @@ describe('Event Bridge', function () {
 
     it('should fire event listener once', function () {
       evt.once(elm, 'click', handle_event);
+      simulateMouseEvent(elm);
+      simulateMouseEvent(elm);
+      expect(handle_event.calls.count()).toEqual(1);
+    });
+
+    it('should add first supported event listener', function () {
+      evt.addFirstSupported(elm, ['xxx', 'click'], handle_event);
+      simulateMouseEvent(elm);
+      expect(handle_event).toHaveBeenCalled();
+    });
+
+    it('should add first supported event listener once', function () {
+      evt.addFirstSupportedOnce(elm, ['xxx', 'click'], handle_event);
       simulateMouseEvent(elm);
       simulateMouseEvent(elm);
       expect(handle_event.calls.count()).toEqual(1);

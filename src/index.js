@@ -59,6 +59,25 @@ export function addFirstSupported (
 
 
 /**
+ * Add first supported event listener from the list, ignore the rest. After the event has been fired, the event listener is removed.
+ * @param {event_object} [object=window] - Any object that can receive event listener.
+ * @param {Array.<string>} [events] - List of event names.
+ * @param {EventCallback} [callback] - Function to be called when event is fired.
+ *
+ * @example <caption>Cross-browser listener for CSS animation end:</caption>
+ * addFirstSupportedOnce(my_element, ['transitionend', 'oTransitionEnd', 'webkitTransitionEnd'], function () {...});
+ */
+export function addFirstSupportedOnce (
+  object = window,
+  events = [],
+  callback = noop
+) {
+  const supported_events = events.filter(isValidEventType);
+  once(object, supported_events[0], callback);
+}
+
+
+/**
  * Remove event listeners from the object.
  * @param {event_object} [object=window] - Any object that can receive event listener.
  * @param {string|Array.<string>} [events] - Single event name or list of event names.
