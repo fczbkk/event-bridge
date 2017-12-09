@@ -1,3 +1,14 @@
+<a name="3.5.0"></a>
+# [3.5.0](https://github.com/fczbkk/event-bridge/compare/v3.4.0...v3.5.0) (2017-12-09)
+
+
+### Features
+
+* add `addFirstSupportedOnce()` ([5361f45](https://github.com/fczbkk/event-bridge/commit/5361f45))
+* add support for input via function ([cc7c8eb](https://github.com/fczbkk/event-bridge/commit/cc7c8eb))
+
+
+
 <a name="3.4.0"></a>
 # [3.4.0](https://github.com/fczbkk/event-bridge/compare/v3.3.1...v3.4.0) (2016-10-04)
 

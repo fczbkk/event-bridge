@@ -61,9 +61,17 @@ EventBridge.addFirstSupported(window, ['popstate', 'hashchange'], function () {.
 
 Callback fired by an Event.
 
+Type: [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)
+
 **Parameters**
 
 -   `event` **[Event](https://developer.mozilla.org/en-US/docs/Web/API/Event)** 
+
+### event_object
+
+Object for event listener. If function is used, it will be evaluated and its return value will be used.
+
+Type: ([Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) \| [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function))
 
 ### add
 
@@ -71,9 +79,9 @@ Add event listeners to the object.
 
 **Parameters**
 
--   `object` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** Any object that can receive event listener. (optional, default `window`)
--   `events` **\[([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>)]** Single event name or list of event names.
--   `callback` **\[[EventCallback](#eventcallback)]** Function to be called when event is fired.
+-   `object` **[event_object](#event_object)** Any object that can receive event listener. (optional, default `window`)
+-   `events` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>)?** Single event name or list of event names. (optional, default `[]`)
+-   `callback` **[EventCallback](#eventcallback)?** Function to be called when event is fired. (optional, default `noop`)
 
 ### once
 
@@ -81,9 +89,9 @@ Add event listeners to the object. After any of the events has been fired, the e
 
 **Parameters**
 
--   `object` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** Any object that can receive event listener. (optional, default `window`)
--   `events` **\[([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>)]** Single event name or list of event names.
--   `callback` **\[[EventCallback](#eventcallback)]** Function to be called when event is fired.
+-   `object` **[event_object](#event_object)** Any object that can receive event listener. (optional, default `window`)
+-   `events` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>)?** Single event name or list of event names. (optional, default `[]`)
+-   `callback` **[EventCallback](#eventcallback)?** Function to be called when event is fired. (optional, default `noop`)
 
 ### addFirstSupported
 
@@ -91,9 +99,9 @@ Add first supported event listener from the list, ignore the rest.
 
 **Parameters**
 
--   `object` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** Any object that can receive event listener. (optional, default `window`)
--   `events` **\[[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>]** List of event names.
--   `callback` **\[[EventCallback](#eventcallback)]** Function to be called when event is fired.
+-   `object` **[event_object](#event_object)** Any object that can receive event listener. (optional, default `window`)
+-   `events` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>?** List of event names. (optional, default `[]`)
+-   `callback` **[EventCallback](#eventcallback)?** Function to be called when event is fired. (optional, default `noop`)
 
 **Examples**
 
@@ -103,15 +111,33 @@ _Use `onPopState` in modern browsers, but `onHashChange` in IE9._
 addFirstSupported(window, ['popstate', 'hashchange'], function () {...});
 ```
 
+### addFirstSupportedOnce
+
+Add first supported event listener from the list, ignore the rest. After the event has been fired, the event listener is removed.
+
+**Parameters**
+
+-   `object` **[event_object](#event_object)** Any object that can receive event listener. (optional, default `window`)
+-   `events` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>?** List of event names. (optional, default `[]`)
+-   `callback` **[EventCallback](#eventcallback)?** Function to be called when event is fired. (optional, default `noop`)
+
+**Examples**
+
+_Cross-browser listener for CSS animation end:_
+
+```javascript
+addFirstSupportedOnce(my_element, ['transitionend', 'oTransitionEnd', 'webkitTransitionEnd'], function () {...});
+```
+
 ### remove
 
 Remove event listeners from the object.
 
 **Parameters**
 
--   `object` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** Any object that can receive event listener. (optional, default `window`)
--   `events` **\[([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>)]** Single event name or list of event names.
--   `callback` **\[[EventCallback](#eventcallback)]** Function to be called when event is fired.
+-   `object` **[event_object](#event_object)** Any object that can receive event listener. (optional, default `window`)
+-   `events` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>)?** Single event name or list of event names. (optional, default `[]`)
+-   `callback` **[EventCallback](#eventcallback)?** Function to be called when event is fired. (optional, default `noop`)
 
 ### stop
 
@@ -130,6 +156,16 @@ Get reference to the object that dispatched the event.
 -   `event` **[Event](https://developer.mozilla.org/en-US/docs/Web/API/Event)** 
 
 Returns **([Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) | null)** 
+
+### sanitizeInputObject
+
+Sanitizes input object, evaluates it if it is function.
+
+**Parameters**
+
+-   `input` **any?** 
+
+Returns **any** 
 
 ## Bug reports, feature requests and contact
 
